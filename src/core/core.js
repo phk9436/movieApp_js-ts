@@ -55,12 +55,15 @@ export class Store {
         get: () => state[key],
         set: (val) => {
           state[key] = val;
-          this.observers[key]();
+          this.observers[key].forEach((observer) => observer(val));
         },
       });
     }
   }
   subscribe(key, cb) {
-    this.observers[key] = cb;
+    // this.observers[key] = cb; //1개밖에 저장 못함
+    Array.isArray(this.observers[key])
+      ? this.observers[key].push(cb)
+      : (this.observers[key] = [cb]);
   }
 }
