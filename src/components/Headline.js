@@ -2,7 +2,7 @@ import { Component } from "../core/core";
 
 export default class Headline extends Component {
   render() {
-    this.el.classList.add("headLine");
+    this.el.classList.add("headline");
     this.el.innerHTML = /* html */ `
       <h1>
         <span>OMBb API</span><br>
