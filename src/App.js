@@ -1,5 +1,4 @@
 import { Component } from "./core/core";
-import Header from "./components/Header";
 
 export default class App extends Component {
   constructor() {
@@ -10,6 +9,6 @@ export default class App extends Component {
   render() {
     //상속된 render 메서드를 작성한다.
     const routerView = document.createElement("router-view"); //중간에 -를 넣어야 함
-    this.el.append(new Header().el, routerView);
+    this.el.append(routerView);
   }
 }
