@@ -1,0 +1,24 @@
+{
+  "name": "movieapp_js-ts",
+  "version": "1.0.0",
+  "description": "바닐라js와 ts를 이용해 만드는 무비 앱입니다.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel ./index.html",
+    "build": "parcel build ./index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phk9436/movieApp_js-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phk9436/movieApp_js-ts/issues"
+  },
+  "homepage": "https://github.com/phk9436/movieApp_js-ts#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
