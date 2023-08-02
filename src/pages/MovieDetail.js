@@ -5,10 +5,11 @@ export default class MovieDetail extends Component {
   async render() {
     await getMovieDetails(history.state.id);
     const { movie } = movieStore.state;
+    const bigPoster = movie.Poster.replace("SX300", "SX700");
 
     this.el.classList.add("container", "the-movie");
     this.el.innerHTML = /* HTML */ `
-      <div class="poster" style="background-image: url(${movie.Poster})"></div>
+      <div class="poster" style="background-image: url(${bigPoster})"></div>
       <div class="specs">
         <div class="title">${movie.Title}</div>
         <div class="labels">
