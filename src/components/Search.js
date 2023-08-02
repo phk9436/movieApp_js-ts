@@ -16,7 +16,6 @@ export default class Search extends Component {
     inputEl.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && movieStore.state.searchText.trim()) {
         searchMovies(1);
-        movieStore.state.searchText = "";
       }
     });
 
@@ -24,7 +23,6 @@ export default class Search extends Component {
     btnEl.addEventListener("click", () => {
       if (movieStore.state.searchText.trim()) {
         searchMovies(1);
-        movieStore.state.searchText = "";
       }
     });
   }
