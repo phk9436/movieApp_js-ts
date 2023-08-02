@@ -5,6 +5,7 @@ const movieStore = new Store({
   page: 1,
   pageMax: 1,
   movies: [],
+  movie: {},
   isLoading: false,
   message: "Search for the movie title!",
 });
@@ -30,10 +31,22 @@ export const searchMovies = async (page) => {
       movieStore.state.message = Error;
       movieStore.state.pageMax = 1;
     }
-  } catch(err) {
+  } catch (err) {
     movieStore.state.message = err;
     movieStore.state.pageMax = 1;
   } finally {
     movieStore.state.isLoading = false;
+  }
+};
+
+export const getMovieDetails = async (id) => {
+  try {
+    const res = await fetch(
+      `https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`
+    );
+    movieStore.state.movie = await res.json();
+  } catch (err) {
+    console.log(err);
+    movieStore.state.movie = {};
   }
 };
