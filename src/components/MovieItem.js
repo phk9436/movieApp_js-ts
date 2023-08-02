@@ -1,9 +1,9 @@
 import { Component } from "../core/core";
 
 export default class MovieItem extends Component {
-  constructor(props) {
+  constructor(props) { //인수로 props를 받아서
     super({
-      props,
+      props, //부모 class에 올려보낸다.
       tagName: "a",
     });
   }
