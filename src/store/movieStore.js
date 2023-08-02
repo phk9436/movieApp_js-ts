@@ -6,6 +6,7 @@ const movieStore = new Store({
   pageMax: 1,
   movies: [],
   isLoading: false,
+  message: "Search for the movie title!",
 });
 
 export default movieStore;
@@ -15,12 +16,24 @@ export const searchMovies = async (page) => {
   movieStore.state.page = page;
   if (page === 1) {
     movieStore.state.movies = [];
+    movieStore.state.message = "";
   }
-  const res = await fetch(
-    `https://omdbapi.com?apikey=7035c60c&s=${movieStore.state.searchText}&page=${page}`
-  );
-  const { Search, totalResults } = await res.json();
-  movieStore.state.movies = [...movieStore.state.movies, ...Search];
-  movieStore.state.pageMax = Math.ceil(Number(totalResults) / 10);
-  movieStore.state.isLoading = false;
+  try {
+    const res = await fetch(
+      `https://omdbapi.com?apikey=7035c60c&s=${movieStore.state.searchText}&page=${page}`
+    );
+    const { Search, totalResults, Response, Error } = await res.json();
+    if (Response === "True") {
+      movieStore.state.movies = [...movieStore.state.movies, ...Search];
+      movieStore.state.pageMax = Math.ceil(Number(totalResults) / 10);
+    } else {
+      movieStore.state.message = Error;
+      movieStore.state.pageMax = 1;
+    }
+  } catch(err) {
+    movieStore.state.message = err;
+    movieStore.state.pageMax = 1;
+  } finally {
+    movieStore.state.isLoading = false;
+  }
 };
