@@ -42,7 +42,7 @@ export default class Header extends Component {
             .join("")}
         </ul>
       </nav>
-      <a href="#/" class="user">
+      <a href="https://github.com/phk9436" class="user" target="_blank">
         <img src="https://heropy.blog/css/images/logo.png" alt="User" />
       </a>
     `;

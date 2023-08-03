@@ -1,5 +1,6 @@
 import { Component } from "./core/core";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default class App extends Component {
   constructor() {
@@ -11,6 +12,7 @@ export default class App extends Component {
     //상속된 render 메서드를 작성한다.
     const routerView = document.createElement("router-view"); //중간에 -를 넣어야 함
     const header = new Header().el;
-    this.el.append(header, routerView);
+    const footer = new Footer().el;
+    this.el.append(header, routerView, footer);
   }
 }
