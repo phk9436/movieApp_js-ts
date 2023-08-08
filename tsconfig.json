@@ -7,6 +7,6 @@
     "lib": ["ESNext", "DOM"],
     "strict": true
   },
-  "include": ["src/**/*.ts", "api/**/*.ts", "api/movie.js"],
+  "include": ["src/**/*.ts", "api/**/*.ts", "api/movie.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,6 +1,10 @@
 import fetch from "node-fetch";
+import { VercelRequestBody, VercelResponse } from "@vercel/node";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: VercelRequestBody,
+  res: VercelResponse
+) {
   const { title, page, id } = JSON.parse(req.body);
   //body에 담으려면 post를 해야한다.
   //요청할때 JSON.stringify로 보냈던 걸 다시 parse
