@@ -1,18 +1,19 @@
 import { Store } from "../core/core";
+import { IMovieState, IMovieDetail } from "../types/movieStoreTypes";
 
-const movieStore = new Store({
+const movieStore = new Store<IMovieState>({
   searchText: "",
   page: 1,
   pageMax: 1,
   movies: [],
-  movie: {},
+  movie: {} as IMovieDetail,
   isLoading: false,
   message: "Search for the movie title!",
 });
 
 export default movieStore;
 
-export const searchMovies = async (page) => {
+export const searchMovies = async (page: number) => {
   movieStore.state.isLoading = true;
   movieStore.state.page = page;
   if (page === 1) {
@@ -37,14 +38,14 @@ export const searchMovies = async (page) => {
       movieStore.state.pageMax = 1;
     }
   } catch (err) {
-    movieStore.state.message = err;
+    movieStore.state.message = `${err}`;
     movieStore.state.pageMax = 1;
   } finally {
     movieStore.state.isLoading = false;
   }
 };
 
-export const getMovieDetails = async (id) => {
+export const getMovieDetails = async (id: string) => {
   try {
     const res = await fetch("/api/movie", {
       method: "POST",
@@ -55,6 +56,6 @@ export const getMovieDetails = async (id) => {
     movieStore.state.movie = await res.json();
   } catch (err) {
     console.log(err);
-    movieStore.state.movie = {};
+    movieStore.state.movie = {} as IMovieDetail;
   }
 };
