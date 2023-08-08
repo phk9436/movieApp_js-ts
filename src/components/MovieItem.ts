@@ -1,7 +1,10 @@
 import { Component } from "../core/core";
+import { IMovieItemProps } from "../types/components/movieItemTypes";
 
 export default class MovieItem extends Component {
-  constructor(props) { //인수로 props를 받아서
+  props!: IMovieItemProps;
+  constructor(props: IMovieItemProps) {
+    //인수로 props를 받아서
     super({
       props, //부모 class에 올려보낸다.
       tagName: "a",

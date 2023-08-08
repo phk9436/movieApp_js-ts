@@ -39,9 +39,9 @@ export interface IMovieDetail {
   Response: string;
 }
 
-interface IMovie {
+export interface IMovie {
   Poster: string;
-  TItle: string;
+  Title: string;
   Type: string;
   Year: string;
   imdbID: string;
