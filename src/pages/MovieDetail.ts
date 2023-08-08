@@ -12,7 +12,7 @@ export default class MovieDetail extends Component {
         <div class="plot skeleton"></div>
       </div>
     `;
-    
+
     await getMovieDetails(history.state.id);
     const { movie } = movieStore.state;
     const bigPoster = movie.Poster.replace("SX300", "SX700");

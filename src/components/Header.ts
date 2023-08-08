@@ -1,6 +1,8 @@
 import { Component } from "../core/core";
+import { IHeaderState } from "../types/components/headerTypes";
 
 export default class Header extends Component {
+  state!: IHeaderState; //! = 할당 단언, 초기화 한 것처럼 처리
   constructor() {
     super({
       tagName: "header",
@@ -17,9 +19,9 @@ export default class Header extends Component {
         ],
       },
     });
-    window.addEventListener('popstate', () => {
+    window.addEventListener("popstate", () => {
       this.render();
-    })
+    });
   }
   render() {
     this.el.innerHTML = /* html */ `
