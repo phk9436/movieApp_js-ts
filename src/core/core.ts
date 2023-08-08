@@ -1,4 +1,6 @@
 // Component //
+import { IComponentPayload } from "../types/coreTypes";
+
 export class Component {
   constructor(payload = {}) {
     const { tagName = "div", state = {}, props = {} } = payload;
