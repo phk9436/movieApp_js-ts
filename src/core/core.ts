@@ -1,11 +1,17 @@
 // Component //
-import { IComponentPayload, IRoute, IQuery } from "../types/coreTypes";
+import {
+  IComponentPayload,
+  IRoute,
+  IQuery,
+  IObservers,
+  ISubscriptCallback
+} from "../types/coreTypes";
 
 export class Component {
-  el
-  state
-  props
-  constructor(payload:IComponentPayload = {}) {
+  el;
+  state;
+  props;
+  constructor(payload: IComponentPayload = {}) {
     const { tagName = "div", state = {}, props = {} } = payload;
     this.el = document.createElement(tagName);
     this.state = state;
@@ -26,7 +32,7 @@ function routeRender(routes: IRoute[]) {
   // https://localhost:1234/#/about?name=heropy
   // #/about?name=heropy
   const routerView = document.querySelector("router-view");
-  if(!routerView) {
+  if (!routerView) {
     return;
   }
   const [hash, queryString = ""] = location.hash.split("?");
@@ -54,23 +60,23 @@ export function createRouter(routes: IRoute[]) {
 }
 
 // Store //
-export class Store {
-  constructor(state) {
-    this.state = {};
-    this.observers = {};
+export class Store<S> {
+  state = {} as S;
+  private observers = {} as IObservers;
+  constructor(state: S) {
     for (const key in state) {
       Object.defineProperty(this.state, key, {
         get: () => state[key],
         set: (val) => {
           state[key] = val;
-          if(Array.isArray(this.observers[key])) {
+          if (Array.isArray(this.observers[key])) {
             this.observers[key].forEach((observer) => observer(val));
           }
         },
       });
     }
   }
-  subscribe(key, cb) {
+  subscribe(key: string, cb: ISubscriptCallback) {
     // this.observers[key] = cb; //1개밖에 저장 못함
     Array.isArray(this.observers[key])
       ? this.observers[key].push(cb)

@@ -18,3 +18,11 @@ export interface IRoute {
 export interface IQuery {
   [key: string]: string;
 }
+
+export interface IObservers {
+  [key: string]: ISubscriptCallback[];
+}
+
+export interface ISubscriptCallback {
+  (arg: unknown): void;
+}
